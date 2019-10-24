@@ -1,13 +1,45 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<% provide(:title,"プロフィール編集") %>
+<h1>プロフィールの編集</h1>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+<div class = "row"> 
+  <div class = "col-md-6- col-md-offset-3">
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+      <%= f.label :name, 'フルネーム' %>
+      <%= f.text_field :name, class:'form-control' %>
 
+      <%= f.label :username, 'ユーザーネーム' %>
+      <%= f.text_field :username, class:'form-control' %>
+
+      <%= f.label :website, "ウェブサイト" %>
+      <%= f.text_field :website, class:'form-control' %>
+
+      <%= f.label :introduction, "自己紹介" %>
+      <%= f.text_area :introduction, class:'form-control'%>
+
+      <p>非公開情報</p>
+      
+      <%= f.label :email, "メールアドレス" %>
+      <%= f.email_field :email, class:'form-control' %>
+
+      <%= f.label :phone_number, "電話番号(ハイフンなし) " %>
+      <%= f.telephone_field :phone_number, class:'form-control'%>
+      
+      <div class="form-group row">
+          <div class="col-sm-2">
+            <%= f.label :sex, '性別', {class: 'form-label'} %>
+          </div>
+          <div class="col-sm-10 btn-group" data-toggle="buttons">
+            <label class="btn btn-outline-secondary active" style="width:50%">
+              <%= f.radio_button :sex, "男性", {checked: true} %> 男性
+            </label>
+            <label class="btn btn-outline-secondary" style="width:50%">
+              <%= f.radio_button :sex, "女性", {} %> 女性
+            </label>
+          </div>
+        </div>
+        
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
@@ -31,13 +63,10 @@
     <%= f.password_field :current_password, autocomplete: "current-password" %>
   </div>
 
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
+    <%= f.submit "更新する", class: "btn btn-primary" %>
 <% end %>
 
-<h3>Cancel my account</h3>
 
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+<p><%= button_to "アカウントの削除", registration_path(resource_name), data: { confirm: "削除する" }, method: :delete %></p>
 
 <%= link_to "Back", :back %>

@@ -5,6 +5,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li><%= link_to "Top", root_path %></li>
         <% if user_signed_in? %>
+          <li><%= link_to "マイページ", current_user %></li>
           <li><%= link_to "Log out", user_logout_path, method: :delete %></li>
           
         <% else %>

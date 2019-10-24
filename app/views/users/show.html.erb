@@ -1,0 +1,19 @@
+<% provide(:title, @user.name) %>
+<div class="row">
+  <aside class="col-md-4">
+    <section class="user_info">
+      <h1 id="name"><%= "#{@user.username} さんのプロフィール" %></h1>
+      <p id="introduction"><%= @user.introduction %></p>
+      <hr>
+      <p class="website"><%= link_to "#{@user.username}さんのウェブサイトはこちら", "#{@user.website}" %></p>
+    </section>
+    <#section class="stats">
+      <#%= render  'shared/stats' %>
+    </#section>
+    <% if current_user.id == @user.id %>
+      <div class="edit_profile">
+      <%= link_to '編集', edit_user_registration_path(@user) %>
+      </div>
+    <% end %>
+  </aside>
+</div>
