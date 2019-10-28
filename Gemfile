@@ -35,6 +35,7 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'spring-commands-rspec'
+  gem 'dotenv-rails'
 end
 
 group :test do
@@ -50,7 +51,6 @@ end
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-facebook'
-gem 'dotenv-rails'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'kaminari'
