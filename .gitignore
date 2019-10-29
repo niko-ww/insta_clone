@@ -37,3 +37,5 @@ pickle-email-*.html
 .byebug_history
 .DS_Store
 /.env
+# Ignore uploaded files in development
+/public/uploads/

@@ -16,4 +16,6 @@ Rails.application.routes.draw do
     get    '/users',       to: 'users#index',                 as: :users
     get    'users/:id',    to: 'users#show',                  as: :user
   end
+
+  resources :posts, only:[:show, :new, :create, :destroy]
 end

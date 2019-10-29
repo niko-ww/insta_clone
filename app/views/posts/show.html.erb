@@ -1,0 +1,15 @@
+<%= provide(:title,"ユーザーの投稿") %>
+<div class ="row">
+  <div class="post_content">
+    <%= image_tag @post.picture, class:"post_picture" %>
+    <%= simple_format(@post.title) %>
+    <span class="name">
+      <a href="/users/<%= @post.user.id %>">
+        <span>投稿者</span><%= @post.user.username %>
+      </a>
+    </span>
+  </div>
+  <% if user_signed_in? && current_user.id == @post.user_id %>
+    <%= link_to '削除', post_path(current_user), method: :delete %>
+  <% end %>
+</div>

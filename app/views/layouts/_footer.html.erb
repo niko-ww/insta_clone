@@ -1,5 +1,7 @@
-<footer class="footer">
-  <% if user_signed_in? %>
-    <!-- 写真アップロード画面へのリンク -->
-  <% end %>
+<footer>
+  <div class="footer_post">
+    <% if user_signed_in? %>
+      <%= link_to  "投稿する", new_post_path %>
+    <% end %>
+  </div>
 </footer>

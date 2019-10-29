@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  has_many :posts, dependent: :destroy
   before_save { self.email = self.email.downcase }
   validates :name, presence: true, length:{maximum: 50}
   validates :username, presence: true, uniqueness: true,
