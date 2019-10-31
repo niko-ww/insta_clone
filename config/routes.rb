@@ -15,7 +15,10 @@ Rails.application.routes.draw do
     delete 'users/logout', to: 'devise/sessions#destroy',     as: :user_logout
     get    '/users',       to: 'users#index',                 as: :users
     get    'users/:id',    to: 'users#show',                  as: :user
+    get    'users/:id/following',    to: 'users#following',   as: :following_user
+    get    'users/:id/followers',    to: 'users#followers',   as: :followers_user
   end
 
-  resources :posts, only:[:show, :new, :create, :destroy]
+  resources :posts,           only:[:show, :new, :create, :destroy]
+  resources :relationships,   only:[:create, :destroy]
 end

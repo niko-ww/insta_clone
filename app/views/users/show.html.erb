@@ -7,9 +7,9 @@
       <hr>
       <p class="website"><%= link_to "#{@user.username}さんのウェブサイトはこちら", "#{@user.website}" %></p>
     </section>
-    <#section class="stats">
-      <#%= render  'shared/stats' %>
-    </#section>
+    <section class="stats">
+      <%= render  'shared/stats' %>
+    </section>
     <% if current_user.id == @user.id %>
       <div class="edit_profile">
       <%= link_to '編集', edit_user_registration_path(@user) %>
@@ -19,6 +19,7 @@
 
   <div class="col-md-8">
     <% if @user.posts.any? %>
+    <%= render 'follow_form' if user_signed_in? %>
       <h3>投稿数(<%= @user.posts.count %>)</h3>
       <ol class="microposts"> 
         <%= render  @posts %>
