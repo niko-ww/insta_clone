@@ -2,7 +2,10 @@
 <div class="row">
   <aside class="col-md-4">
     <section class="user_info">
-      <h1 id="name"><%= "#{@user.username} さんのプロフィール" %></h1>
+      <h1 id="name">
+        <%= image_tag @user.avatar %>
+        <%= "#{@user.username} さんのプロフィール" %>
+      </h1>
       <p id="introduction"><%= @user.introduction %></p>
       <hr>
       <p class="website"><%= link_to "#{@user.username}さんのウェブサイトはこちら", "#{@user.website}" %></p>

@@ -1,4 +1,4 @@
-<#%= link_to  (current_user, size: 50), current_user %>
+<%= image_tag current_user.avatar %>
 <h1><%= current_user.username %></h1>
-<span><%= link_to  "プロフィール", current_user %></span>
-<span><%= pluralize(current_user.posts.count, "投稿") %></span>
+<span><%= link_to  "プロフィールを見る", current_user %></span>
+<span>投稿数  :  <%= current_user.posts.count %></span>

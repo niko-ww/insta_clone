@@ -1,5 +1,5 @@
 <li class="col-md-4" id="post-<%= post.id %>">
-  <%= link_to "アイコン", post.user %>
+  <%= image_tag post.user.avatar.url %>
   <span class="user"><%= link_to post.user.username, post.user %></span>
   <span class="content">
     <%= post.title %>

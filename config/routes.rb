@@ -15,6 +15,8 @@ Rails.application.routes.draw do
     delete 'users/logout', to: 'devise/sessions#destroy',     as: :user_logout
     get    '/users',       to: 'users#index',                 as: :users
     get    'users/:id',    to: 'users#show',                  as: :user
+    get    'users/:id/edit_password', to: 'users#edit_password',    as: :edit_password_user
+    patch  'users/:id',               to: 'users#update_password',  as: :update_password_user
     get    'users/:id/following',    to: 'users#following',   as: :following_user
     get    'users/:id/followers',    to: 'users#followers',   as: :followers_user
   end
