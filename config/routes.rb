@@ -21,6 +21,8 @@ Rails.application.routes.draw do
     get    'users/:id/followers',    to: 'users#followers',   as: :followers_user
   end
 
-  resources :posts,           only:[:show, :new, :create, :destroy]
+  resources :posts,           only:[:show, :new, :create, :destroy] do
+    resources :comments,        only:[:create]
+  end
   resources :relationships,   only:[:create, :destroy]
 end

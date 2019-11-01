@@ -3,7 +3,9 @@ class PostsController < ApplicationController
   before_action :correct_user, only: :destroy
   
   def show
-    @post = Post.find(params[:id])
+    @post = Post.find(params[:id]) 
+    @comments = @post.comments.includes(:user).page(params[:page]).per(15)
+    @comment = Comment.new
   end
 
   def new
