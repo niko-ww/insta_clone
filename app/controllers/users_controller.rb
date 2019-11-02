@@ -39,7 +39,7 @@ class UsersController < ApplicationController
     render 'show_follow'
   end
 
-  def likes
+  def favorites
     @user = User.find(params[:id])
     @favposts = @user.favposts.page(params[:page]).per(9)
   end

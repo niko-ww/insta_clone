@@ -22,13 +22,14 @@ Rails.application.routes.draw do
       patch :update_password
       get :following
       get :followers
-      get :likes
+      get :favorites
     end
   end
 
-  resources :posts,           only:[:show, :new, :create, :destroy] do
-    resources :comments,        only:[:create]
+  resources :posts,           only: [:show, :new, :create, :destroy] do
+    resources :comments,        only: [:create]
   end
-  resources :relationships,   only:[:create, :destroy]
+  resources :relationships,   only: [:create, :destroy]
   resources :favorites,       only: [:create, :destroy]
+  resources :notifications,   only: [:index]
 end

@@ -12,6 +12,13 @@ class User < ApplicationRecord
             dependent:   :destroy
   has_many :following, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
+  has_many :active_notifications, class_name: 'Notification', 
+            foreign_key: 'visitor_id', 
+            dependent: :destroy
+  has_many :passive_notifications, class_name: 'Notification',
+            foreign_key: 'visited_id',
+            dependent: :destroy
+
   before_save { self.email = self.email.downcase }
   validates :name, presence: true, length:{maximum: 50}
   validates :username, presence: true, uniqueness: true,
@@ -65,11 +72,11 @@ class User < ApplicationRecord
     self.following.include?(other_user)
   end
 
-  def like(post)
+  def favorite(post)
     self.favorites.find_or_create_by(post_id: post.id)
   end
 
-  def unlike(post)
+  def unfavorite(post)
     favorite = favorites.find_by(post_id: post.id)
     favorite.destroy if favorite
   end

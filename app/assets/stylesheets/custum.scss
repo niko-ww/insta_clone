@@ -1,5 +1,6 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "font-awesome";
 
 /* mixins, variables, etc. */
 
@@ -267,5 +268,25 @@ span.picture {
   input {
     border: 0;
   }
+}
+
+// icon
+.fa.fa-bell {
+  color: #ffcc33;
+  font-size: 20px;
+}
+.fa.fa-heart {
+  color: #ff0066;
+  font-size: 20px;
+}
+.fa.fa-user {
+  color: white;
+  font-size: 20px;
+}
+.fa.fa-circle {
+  position: absolute;
+  padding-left: 1rem;
+  padding-top: 0rem;
+  color: #4c80ef;
 }
 
