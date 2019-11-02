@@ -6,6 +6,7 @@ class StaticPagesController < ApplicationController
     end
   end
   
-  def riyou_kiyaku
+  def riyo_kiyaku
+    
   end
 end

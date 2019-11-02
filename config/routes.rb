@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root 'static_pages#top'
+  get '/riyo_kiyaku', to: 'static_pages#riyo_kiyaku'
 
   devise_for :users, controllers: {
     omniauth_callbacks: 'users/omniauth_callbacks',
