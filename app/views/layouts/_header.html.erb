@@ -5,24 +5,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li><%= link_to "Top", root_path %></li>
         <% if user_signed_in? %>
-          <li><%= link_to notifications_path do %>
-            <% if unchecked_notifications.any? %>
-              <span class="fa-stack">
-                <i class="fa fa-bell fa-stack-2x"></i>
-                <i class="fa fa-circle fa-stack-1x"></i>
-              </span>
-            <% else %>
-              <i class="fa fa-bell"></i>
-            <% end %>
-          <% end %></li>
-          <li><%= link_to favorites_user_path(current_user) do %>
-            <i class="fa fa-heart"></i>
-          <% end %></li>
-          <li><%= link_to  current_user do %>
-            <i class="fa fa-user"></i>
-          <% end %></li>
-          <li><%= link_to "ログアウト", user_logout_path, method: :delete %></li>
-          
+          <%= render  "layouts/after_login_header" %>
         <% else %>
           <li><%= link_to "ログイン", new_user_login_path %></li>
         <% end %>

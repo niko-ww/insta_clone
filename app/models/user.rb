@@ -18,14 +18,16 @@ class User < ApplicationRecord
   has_many :passive_notifications, class_name: 'Notification',
             foreign_key: 'visited_id',
             dependent: :destroy
-
+  scope :search_by_keyword, -> (keyword) {
+    where("users.username LIKE :keyword", keyword: "%#{sanitize_sql_like(keyword)}%") if keyword.present?
+            }
   before_save { self.email = self.email.downcase }
   validates :name, presence: true, length:{maximum: 50}
   validates :username, presence: true, uniqueness: true,
             length:{maximum: 50}
   #VALID_PHONE_REGEX = /\A\d{10}$|^\d{11}\z/
   #validates :phone_number, format: { with: VALID_PHONE_REGEX, allow_nil: true}
-  # :confirmable, :lockable, :timeoutable, :trackable and 
+
   devise :database_authenticatable, :registerable,
           :recoverable, :rememberable, :validatable,
           :omniauthable, omniauth_providers: [:facebook]

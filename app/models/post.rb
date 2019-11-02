@@ -5,6 +5,9 @@ class Post < ApplicationRecord
   has_many :users, through: :favorites
   has_many :notifications, dependent: :destroy
   default_scope -> { order(created_at: :desc) }
+  scope :search_by_keyword, -> (keyword) {
+    where("posts.title LIKE :keyword", keyword: "%#{sanitize_sql_like(keyword)}%") if keyword.present?
+  }
   mount_uploader :picture, PictureUploader
   validates :user_id, presence: true
   validates :picture, presence: true
