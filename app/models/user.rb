@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   mount_uploader :avatar, AvatarUploader
-  has_many :posts, dependent: :destroy 
+  has_many :posts, dependent: :destroy
+  has_many :favorites
+  has_many :favposts, through: :favorites, source: :post
   has_many :comments, dependent: :destroy
   has_many :active_relationships, class_name:  "Relationship",
             foreign_key: "follower_id",
@@ -63,4 +65,16 @@ class User < ApplicationRecord
     self.following.include?(other_user)
   end
 
+  def like(post)
+    self.favorites.find_or_create_by(post_id: post.id)
+  end
+
+  def unlike(post)
+    favorite = favorites.find_by(post_id: post.id)
+    favorite.destroy if favorite
+  end
+
+  def favpost?(post)
+    self.favposts.include?(post)
+  end
 end

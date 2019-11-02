@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!, 
-            only: [:show, :following, :followers, :edit_password, :update_password]
+      only: [:show, :following, :followers, :edit_password, :update_password,:likes]
   before_action :correct_user,    only: [:edit, :update]
 
   def index
@@ -37,6 +37,11 @@ class UsersController < ApplicationController
     @user  = User.find(params[:id])
     @users = @user.followers.page(params[:page]).per(15)
     render 'show_follow'
+  end
+
+  def likes
+    @user = User.find(params[:id])
+    @favposts = @user.favposts.page(params[:page]).per(9)
   end
 
   private

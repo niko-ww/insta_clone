@@ -5,6 +5,7 @@
     <%= post.title %>
     <%= image_tag post.picture.url %>
     <%= link_to  "コメントする", post_path(post) %>
+    <%= render 'favorites/like_button', post: post %>
   </span>
   <span class="timestamp">
     Posted <%= time_ago_in_words(post.created_at) %> ago.
