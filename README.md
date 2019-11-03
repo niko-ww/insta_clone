@@ -1,24 +1,18 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+##苦労した点
+・Rspecでのテストに挑戦したが、テストに時間がかかりすぎていたので,開発を優先し今回は途中で断念した。
 
-Things you may want to cover:
+・railsチュートリアルのデザインを基盤に修正を加えていくスタイルだったが、思い通りにいかなかった。HTML、CSSの知識不足、経験不足を痛感した。
 
-* Ruby version
+・DBの設計やモデリングの理解に苦労した。もっと膨大なデータを扱うアプリケーションになった時のこと考えると不安です。
 
-* System dependencies
+##学んだ点
+・モーダルウィンドウを作る際、magnific-popupというプラグインを使用したが、チンプンカンプンでカスタマイズできなかった。Javascriptに限らず、基礎からコツコツ学習すべきだ。
 
-* Configuration
+##自慢したい点
+・参照記事の検索に時間がかかり、効率こそ悪かったが、
+  おおよその機能を実装することができた。
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+##相談したい点
+・現場の業務がわからないので、最低限身につけておくべき知識とそこまで必要のない知識との区別がつかない。
