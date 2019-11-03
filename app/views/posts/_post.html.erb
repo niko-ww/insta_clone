@@ -6,6 +6,7 @@
     <%= link_to post.picture.url, class: "popup-btn" do %>
       <%= image_tag post.picture.url %>
     <% end %>
+
     <script>
       $(function(){
         $('.popup-btn').magnificPopup({
@@ -13,6 +14,7 @@
       });
     });
     </script>
+    
     <%= link_to  "コメントする", post_path(post) %>
     <%= render 'favorites/like_button', post: post %>
   </span>
