@@ -1,3 +1,35 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  root 'static_pages#top'
+  get '/riyo_kiyaku', to: 'static_pages#riyo_kiyaku'
+
+  devise_for :users, controllers: {
+    omniauth_callbacks: 'users/omniauth_callbacks',
+    registrations: "users/registrations",
+    sessions: "users/sessions",
+    passwords: "users/passwords"
+  }
+  devise_scope :user do
+    get    'users/signup', to: 'devise/registrations#new',    as: :new_user
+    post   'users/signup', to: 'devise/registrations#create', as: :user_signup
+    get    'users/login',  to: 'devise/sessions#new',         as: :new_user_login
+    post   'users/login',  to: 'devise/sessions#create',      as: :user_login
+    delete 'users/logout', to: 'devise/sessions#destroy',     as: :user_logout
+  end
+
+  resources :users,           only: [:index, :show] do
+    member do
+      get :edit_password
+      patch :update_password
+      get :following
+      get :followers
+      get :favorites
+    end
+  end
+
+  resources :posts,           only: [:show, :new, :create, :destroy] do
+    resources :comments,        only: [:create]
+  end
+  resources :relationships,   only: [:create, :destroy]
+  resources :favorites,       only: [:create, :destroy]
+  resources :notifications,   only: [:index]
 end

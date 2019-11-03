@@ -1,0 +1,15 @@
+<header class="navbar navbar-fixed-top navbar-inverse">
+  <div class="container">
+    <%= link_to "Insta Clone", root_path, id: "logo" %>
+    <nav>
+      <ul class="nav navbar-nav navbar-right">
+        <li><%= link_to "Top", root_path %></li>
+        <% if user_signed_in? %>
+          <%= render  "layouts/after_login_header" %>
+        <% else %>
+          <li><%= link_to "ログイン", new_user_login_path %></li>
+        <% end %>
+      </ul>
+    </nav>
+  </div>
+</header>

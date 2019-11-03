@@ -1,0 +1,9 @@
+<footer class="footer">
+  <div class="footer_post">
+    <% if user_signed_in? %>
+      <%= link_to  new_post_path do %>
+        <i class="fa fa-upload">投稿する</i>
+      <% end %>
+    <% end %>
+  </div>
+</footer>

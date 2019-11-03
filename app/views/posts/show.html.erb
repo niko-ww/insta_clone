@@ -1,0 +1,38 @@
+<%= provide(:title,"ユーザーの投稿") %>
+<div class ="row">
+  <div class="col-md-4">
+    <span class="name">
+      <a href="/users/<%= @post.user.id %>">
+        <%= image_tag @post.user.avatar.url %>
+        <%= @post.user.username %>
+      </a>
+    </span>
+    <%= image_tag @post.picture, class:"post_picture" %>
+    <%= simple_format(@post.title) %>
+    <span>
+      <% if user_signed_in? && current_user.id == @post.user_id %>
+      <%= link_to '削除', post_path(current_user), method: :delete %>
+      <% end %>
+    </span>
+  </div>
+  <div class="col-md-8">
+    <h4>＜コメント一覧＞</h4>
+    <% if @comments %>
+      <% @comments.each do |comment| %>
+        <p>
+          <%= image_tag comment.user.avatar.url %>
+          <strong><%= link_to comment.user.username, "/users/#{comment.user_id}" %>：</strong>
+          <%= comment.text %>
+        </p>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="comment_form"> 
+    <% if current_user %>
+      <%= form_tag("/posts/#{@post.id}/comments", method: :post) do %>
+        <textarea cols="30" name="text" placeholder="コメントを入力" rows="2"></textarea>
+        <input type="submit" value="コメントする">
+      <% end %>
+    <% end %>
+  </div>
+</div>

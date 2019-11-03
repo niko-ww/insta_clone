@@ -1,0 +1,26 @@
+<li class="search-nav">
+    <%= form_tag(root_path, method: :get) do %>
+      <div class="input-group">
+        <%= search_field_tag "q", params[:q], class: "form-control", placeholder: "キーワード検索" %>
+        <span class="input-group-btn">
+          <%= submit_tag "検索", class: "btn btn-default" %>
+        </span>
+      </div>
+    <% end %>
+  <li><%= link_to notifications_path do %>
+    <% if unchecked_notifications.any? %>
+      <span class="fa-stack">
+        <i class="fa fa-bell fa-stack-2x"></i>
+        <i class="fa fa-circle fa-stack-1x"></i>
+      </span>
+    <% else %>
+      <i class="fa fa-bell"></i>
+    <% end %>
+  <% end %>
+  </li>
+  <li><%= link_to favorites_user_path(current_user) do %>
+    <i class="fa fa-heart"></i><% end %></li>
+  <li><%= link_to  current_user do %>
+    <i class="fa fa-user"></i><% end %></li>
+  <li><%= link_to "ログアウト", user_logout_path, method: :delete %></li>
+</li>

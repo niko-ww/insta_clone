@@ -1,0 +1,28 @@
+<% visitor = notification.visitor %>
+<% visited = notification.visited %>
+<div class="col-md-6.mx-auto">
+  <div class= "form-inline">
+    <span>
+      <strong>
+      <%= image_tag visitor.avatar.url%>
+      <%= link_to visitor.username,user_path(visitor) %>さんが
+        <% case notification.action when "favorite" %>
+          <%= link_to  "あなたの投稿", notification.post %>
+          をお気に入りしました
+        <% when "comment" %>
+          <% if notification.post.user_id == visited.id  %>
+            <%= link_to "あなたの投稿", notification.post %>
+          <% else %>
+            <%= image_tag notification.post.user.avatar.url, class: "icon_mini"%>
+            <%= link_to "#{notification.post.username}さんの投稿",post_path(notification.post) %>
+          <% end %>
+          にコメントしました
+            :  <%= Comment.find_by(id: notification.comment_id)&.text %>
+        <% end %>
+      </strong>
+    </span>
+  </div>
+  <div class="small.text-muted.text-right">
+    <%= time_ago_in_words(notification.created_at) %> ago
+  </div>
+</div>

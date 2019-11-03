@@ -1,0 +1,25 @@
+<% if user_signed_in? %>
+<div class="row">
+  <aside class="col-md-4">
+    <section class="user_info">
+      <%= render 'shared/user_info' %>
+    </section>  
+    <section class="stats">
+      <%= render 'shared/stats' %>
+    </section>
+  </aside>
+
+  <div class="col-md-8">
+    <h3>ユーザーの投稿</h3>
+    <%= render  "shared/feed" %>
+  </div>
+</div>
+
+<% else %>
+  <div class="center jumbotron">
+    <h1>ようこそ Insta Clone へ</h1>
+    <%= link_to "新規登録", new_user_path, class: "btn btn-lg btn-primary" %>
+    <%= link_to "Facebookで会員登録", user_facebook_omniauth_authorize_path, class: "btn btn-lg btn-primary" %>
+  </div>
+  
+<% end %>

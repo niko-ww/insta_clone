@@ -1,0 +1,7 @@
+<%= provide(:title,"通知一覧") %>
+<% @notifications = @notifications.where.not(visitor_id: current_user.id) %>
+<h1>あなたへの通知</h1>
+<ul>
+  <%= render @notifications %>
+  <%= paginate @notifications %>
+</ul>
