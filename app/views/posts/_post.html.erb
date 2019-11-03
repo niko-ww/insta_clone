@@ -3,7 +3,16 @@
   <span class="user"><%= link_to post.user.username, post.user %></span>
   <span class="content">
     <%= post.title %>
-    <%= image_tag post.picture.url %>
+    <%= link_to post.picture.url, class: "popup-btn" do %>
+      <%= image_tag post.picture.url %>
+    <% end %>
+    <script>
+      $(function(){
+        $('.popup-btn').magnificPopup({
+        type: 'image'
+      });
+    });
+    </script>
     <%= link_to  "コメントする", post_path(post) %>
     <%= render 'favorites/like_button', post: post %>
   </span>
