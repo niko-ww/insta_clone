@@ -1,10 +1,6 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!, 
-      only: [:show, :following, :followers, :edit_password, :update_password,:likes]
-  before_action :correct_user,    only: [:edit, :update]
-
-  def index
-  end
+  before_action :authenticate_user!
+  before_action :correct_user,    only: [:edit_password, :update_password]
 
   def show
     @user = User.find(params[:id])
@@ -52,6 +48,6 @@ class UsersController < ApplicationController
 
     def correct_user
       @user = User.find(params[:id])
-      redirect_to(root_url) unless current_user?
+      redirect_to(root_url) unless current_user?(@user)
     end
 end
